@@ -12,7 +12,7 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 
 ## 配置
 
-Add the SDK as a yii2 application `component` in the `config/main.php`:
+在 `config/main.php` 添加应用组件:
 
 ```php
 'components' => [
@@ -21,5 +21,23 @@ Add the SDK as a yii2 application `component` in the `config/main.php`:
 		'class' => 'blackhive\easywechat\Wechat',
 	],
 	// ...
+]
+```
+
+在 `config/params_local.php` 中添加配置参数：
+
+```php
+[
+    'wechat' => [
+        // 微信商户平台参数
+        'pay' => [
+            'app_id' => '',
+            'mch_id' => '',
+            'key' => '',
+            'cert_path' => dirname(__FILE__) . '/path/to/apiclient_cert.pem', // 绝对路径！！！！
+            'key_path' => dirname(__FILE__) . '/path/to/apiclient_key.pem',  // 绝对路径！！！！
+            'notify_url' => '',
+        ]
+    ]
 ]
 ```

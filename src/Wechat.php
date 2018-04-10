@@ -11,6 +11,14 @@ class Wechat extends Component
 {
     /**
      * 配置
+     * [
+     *      'wechat' => [
+     *          // 微信商户平台
+     *          'pay' => [],
+     *          // 微信公众平台
+     *          'mp' => [],
+     *          // 微信开放平台
+     *          'open' => []
      * @var
      */
     private $_config;
@@ -35,7 +43,7 @@ class Wechat extends Component
     public function getPayment()
     {
         if(is_null($this->_payment)){
-            $this->_payment = Factory::payment($this->_config);
+            $this->_payment = Factory::payment($this->_config['pay']);
         }
         return $this->_payment;
     }
