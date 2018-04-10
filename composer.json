@@ -1,0 +1,23 @@
+{
+    "name": "blackhive/yii2-easywechat",
+    "description": "easywechat 4 for yii2",
+    "keywords": ["yii2", "wechat", "easywechat"],
+    "type": "yii2-extension",
+    "require": {
+        "yiisoft/yii2": "2.0.15.1",
+        "overtrue/wechat": "^4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Liam Wang",
+            "email": "hobart.cn@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "blackhive\\easywechat\\": "src"
+        }
+    }
+}
