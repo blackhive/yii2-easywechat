@@ -1,8 +1,13 @@
 # yii2-easywechat
 
+[![Latest Stable Version](https://poser.pugx.org/blackhive/yii2-easywechat/v/stable)](https://packagist.org/packages/blackhive/yii2-easywechat)
+[![Total Downloads](https://poser.pugx.org/blackhive/yii2-easywechat/downloads)](https://packagist.org/packages/blackhive/yii2-easywechat)
+[![Latest Unstable Version](https://poser.pugx.org/blackhive/yii2-easywechat/v/unstable)](https://packagist.org/packages/blackhive/yii2-easywechat)
+[![License](https://poser.pugx.org/blackhive/yii2-easywechat/license)](https://packagist.org/packages/blackhive/yii2-easywechat)
+
 easywechat 4 for yii2
 
-based on [overtrue/wechat](https://github.com/overtrue/wechat)
+基于 [overtrue/wechat](https://github.com/overtrue/wechat)
 
 ## 安装
 
@@ -20,7 +25,6 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 	'wechat' => [
 		'class' => 'blackhive\easywechat\Wechat',
 	],
-	// ...
 ]
 ```
 
@@ -29,15 +33,18 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 ```php
 [
     'wechat' => [
-        // 微信商户平台参数
-        'pay' => [
-            'app_id' => '',
-            'mch_id' => '',
-            'key' => '',
-            'cert_path' => dirname(__FILE__) . '/path/to/apiclient_cert.pem', // 绝对路径！！！！
-            'key_path' => dirname(__FILE__) . '/path/to/apiclient_key.pem',  // 绝对路径！！！！
-            'notify_url' => '',
-        ]
-    ]
+    // 微信商户平台
+    'pay' => [
+        'app_id' => '',
+        'mch_id' => '',
+        'key' => '',
+        'cert_path' => dirname(__FILE__) . '/path/to/apiclient_cert.pem', // 绝对路径！！！！
+        'key_path' => dirname(__FILE__) . '/path/to/apiclient_key.pem',  // 绝对路径！！！！
+        'notify_url' => '',
+    ],
+    // 微信公众平台
+    'mp' => [],
+    // 微信开放平台
+    'open' => []
 ]
 ```

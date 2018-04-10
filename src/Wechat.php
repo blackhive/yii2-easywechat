@@ -19,6 +19,7 @@ class Wechat extends Component
      *          'mp' => [],
      *          // 微信开放平台
      *          'open' => []
+     * ]
      * @var
      */
     private $_config;
@@ -46,5 +47,14 @@ class Wechat extends Component
             $this->_payment = Factory::payment($this->_config['pay']);
         }
         return $this->_payment;
+    }
+
+    /**
+     * 判断是否在微信客户端内
+     * @return bool
+     */
+    public function isWechat()
+    {
+        return strpos($_SERVER["HTTP_USER_AGENT"], "MicroMessenger") !== false;
     }
 }
