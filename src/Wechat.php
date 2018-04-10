@@ -26,6 +26,8 @@ class Wechat extends Component
 
     private $_payment;
 
+    private $_account;
+
     public function init()
     {
         parent::init();
@@ -47,6 +49,18 @@ class Wechat extends Component
             $this->_payment = Factory::payment($this->_config['pay']);
         }
         return $this->_payment;
+    }
+
+    /**
+     * 获取微信公众号客户端
+     * @return \EasyWeChat\OfficialAccount\Application
+     */
+    public function getAccount()
+    {
+        if(is_null($this->_account)){
+            $this->_account = Factory::officialAccount($this->_config['mp']);
+        }
+        return $this->_account;
     }
 
     /**

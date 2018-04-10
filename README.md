@@ -43,8 +43,28 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
         'notify_url' => '',
     ],
     // 微信公众平台
-    'mp' => [],
+    'mp' => [
+        'app_id' => '',
+        'secret' => '',
+    ],
     // 微信开放平台
     'open' => []
 ]
 ```
+
+## 使用
+
+```php
+// 微信支付客户端
+$payment = Yii::$app->wechat->payment;
+
+// 微信公众号客户端
+$account = Yii::$app->wechat->account;
+
+// 是否在微信客户端内
+if (Yii::$app->wechat->isWechat()){
+    // 微信内的操作
+}
+```
+
+具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/docs/master)
