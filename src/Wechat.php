@@ -26,7 +26,9 @@ class Wechat extends Component
 
     private $_payment;
 
-    private $_account;
+    private $_officialAccount;
+
+    private $_openPlatform;
 
     public function init()
     {
@@ -55,12 +57,24 @@ class Wechat extends Component
      * 获取微信公众号客户端
      * @return \EasyWeChat\OfficialAccount\Application
      */
-    public function getAccount()
+    public function getOfficialAccount()
     {
-        if(is_null($this->_account)){
-            $this->_account = Factory::officialAccount($this->_config['mp']);
+        if(is_null($this->_officialAccount)){
+            $this->_officialAccount = Factory::officialAccount($this->_config['mp']);
         }
-        return $this->_account;
+        return $this->_officialAccount;
+    }
+
+    /**
+     * 获取微信开放平台客户端
+     * @return \EasyWeChat\OpenPlatform\Application
+     */
+    public function getOpenPlatform()
+    {
+        if(is_null($this->_openPlatform)){
+            $this->_openPlatform = Factory::openPlatform($this->_config['open']);
+        }
+        return $this->_openPlatform;
     }
 
     /**

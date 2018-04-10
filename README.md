@@ -33,22 +33,27 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 ```php
 [
     'wechat' => [
-    // 微信商户平台
-    'pay' => [
-        'app_id' => '',
-        'mch_id' => '',
-        'key' => '',
-        'cert_path' => dirname(__FILE__) . '/path/to/apiclient_cert.pem', // 绝对路径！！！！
-        'key_path' => dirname(__FILE__) . '/path/to/apiclient_key.pem',  // 绝对路径！！！！
-        'notify_url' => '',
-    ],
-    // 微信公众平台
-    'mp' => [
-        'app_id' => '',
-        'secret' => '',
-    ],
-    // 微信开放平台
-    'open' => []
+        // 微信商户平台
+        'pay' => [
+            'app_id' => '',
+            'mch_id' => '',
+            'key' => '',
+            'cert_path' => dirname(__FILE__) . '/path/to/apiclient_cert.pem', // 绝对路径！！！！
+            'key_path' => dirname(__FILE__) . '/path/to/apiclient_key.pem',  // 绝对路径！！！！
+            'notify_url' => '',
+        ],
+        // 微信公众平台
+        'mp' => [
+            'app_id' => '',
+            'secret' => '',
+        ],
+        // 微信开放平台
+        'open' => [
+            'app_id'   => '',
+            'secret'   => '',
+            'token'    => '',
+            'aes_key'  => ''
+        ]
 ]
 ```
 
@@ -59,7 +64,10 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 $payment = Yii::$app->wechat->payment;
 
 // 微信公众号客户端
-$account = Yii::$app->wechat->account;
+$officialAccount = Yii::$app->wechat->officialAccount;
+
+// 微信公众平台客户端
+$openPlatform = Yii::$app->wechat->openPlatform;
 
 // 是否在微信客户端内
 if (Yii::$app->wechat->isWechat()){
