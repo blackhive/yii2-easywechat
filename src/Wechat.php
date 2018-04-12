@@ -4,6 +4,7 @@ namespace blackhive\easywechat;
 
 use Yii;
 use yii\base\Component;
+use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use EasyWeChat\Factory;
 
@@ -29,6 +30,8 @@ class Wechat extends Component
     private $_officialAccount;
 
     private $_openPlatform;
+
+    public $openidName = 'wx.openid';
 
     public function init()
     {
@@ -84,5 +87,26 @@ class Wechat extends Component
     public function isWechat()
     {
         return strpos($_SERVER["HTTP_USER_AGENT"], "MicroMessenger") !== false;
+    }
+
+    /**
+     * 保存 openid
+     * @param $openid
+     */
+    public function setOpenid($openid)
+    {
+        if(!is_string($openid)){
+            throw new InvalidArgumentException('openid 应该是字符串');
+        }
+        Yii::$app->session->set($this->openidName, $openid);
+    }
+
+    /**
+     * 获取 openid
+     * @return mixed|string
+     */
+    public function getOpenid()
+    {
+        return Yii::$app->session->has($this->openidName) ? Yii::$app->session->get($this->openidName) : '';
     }
 }
