@@ -24,6 +24,7 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
 	// ...
 	'wechat' => [
 		'class' => 'blackhive\easywechat\Wechat',
+		//'openidName' => 'wx.openid',
 	],
 ]
 ```
@@ -73,6 +74,12 @@ $openPlatform = Yii::$app->wechat->openPlatform;
 if (Yii::$app->wechat->isWechat()){
     // 微信内的操作
 }
+
+// 向 session 中保存 openid
+Yii::$app->wechat->openid = 'jfdjdjfjdaj';
+
+// 从 session 中获取 openid
+Yii::$app->wechat->openid;
 ```
 
 具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/docs/master)
