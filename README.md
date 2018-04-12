@@ -9,6 +9,8 @@ easywechat 4 for yii2
 
 基于 [overtrue/wechat](https://github.com/overtrue/wechat)
 
+友情提示，微信支付的沙箱不要用，它和支付宝的沙箱不是一个东西。。。
+
 ## 安装
 
 ```shell
