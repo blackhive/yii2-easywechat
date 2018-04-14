@@ -81,21 +81,21 @@ if (Yii::$app->wechat->isWechat()){
     // 微信内的操作
 }
 
-// 向 session 中保存 openid
+
 Yii::$app->wechat->openid = 'jfdjdjfjdaj';
 
 // 从 session 中获取 openid
 Yii::$app->wechat->openid;
 
 // 微信网页授权:
-if (Yii::$app->wechat->inWechat && !Yii::$app->wechat->openid) {
+if (Yii::$app->wechat->inWechat && !Yii::$app->wechat->openid) {// 从 session 中获取 openid
     Yii::$app->wechat->returnUrl = ['user/order', 'id' => 1];
     return Yii::$app->wechat->officialAccount->oauth->redirect()->send();
 }
 
 // 网页授权回调控制器 /wechat/oauth-callback
 $oauth  = Yii::$app->wechat->officialAccount->oauth;
-Yii::$app->wechat->openid = $oauth->user()->getId();
+Yii::$app->wechat->openid = $oauth->user()->getId();// 向 session 中保存 openid
 return $this->redirect(Yii::$app->wechat->returnUrl);
 
 ```
