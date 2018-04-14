@@ -33,11 +33,13 @@ class Wechat extends Component
 
     public $openidName = 'wx.openid';
 
+    public $returnUrlName = 'wx.return_url';
+
     public function init()
     {
         parent::init();
 
-        if (!isset(Yii::$app->params['wechat'])){
+        if (!isset(Yii::$app->params['wechat'])) {
             throw new InvalidConfigException('参数缺失');
         }
 
@@ -50,7 +52,7 @@ class Wechat extends Component
      */
     public function getPayment()
     {
-        if(is_null($this->_payment)){
+        if (is_null($this->_payment)) {
             $this->_payment = Factory::payment($this->_config['pay']);
         }
         return $this->_payment;
@@ -62,7 +64,7 @@ class Wechat extends Component
      */
     public function getOfficialAccount()
     {
-        if(is_null($this->_officialAccount)){
+        if (is_null($this->_officialAccount)) {
             $this->_officialAccount = Factory::officialAccount($this->_config['mp']);
         }
         return $this->_officialAccount;
@@ -74,7 +76,7 @@ class Wechat extends Component
      */
     public function getOpenPlatform()
     {
-        if(is_null($this->_openPlatform)){
+        if (is_null($this->_openPlatform)) {
             $this->_openPlatform = Factory::openPlatform($this->_config['open']);
         }
         return $this->_openPlatform;
@@ -84,7 +86,7 @@ class Wechat extends Component
      * 判断是否在微信客户端内
      * @return bool
      */
-    public function isWechat()
+    public function getInWechat()
     {
         return strpos($_SERVER["HTTP_USER_AGENT"], "MicroMessenger") !== false;
     }
@@ -95,7 +97,7 @@ class Wechat extends Component
      */
     public function setOpenid($openid)
     {
-        if(!is_string($openid)){
+        if (!is_string($openid)) {
             throw new InvalidArgumentException('openid 应该是字符串');
         }
         Yii::$app->session->set($this->openidName, $openid);
@@ -108,5 +110,32 @@ class Wechat extends Component
     public function getOpenid()
     {
         return Yii::$app->session->has($this->openidName) ? Yii::$app->session->get($this->openidName) : '';
+    }
+
+    /**
+     * 设置回调地址
+     * @param $url
+     */
+    public function setReturnUrl($url)
+    {
+        Yii::$app->session->set($this->returnUrlName, $url);
+    }
+
+    /**
+     * 获取回调地址
+     * @param null $defaultUrl
+     * @return array|mixed|string
+     */
+    public function getReturnUrl($defaultUrl = null)
+    {
+        $returnUrl = Yii::$app->session->get($this->returnUrlName, $defaultUrl);
+        if (is_array($returnUrl)) {
+            if (isset($returnUrl[0])) {
+                return Yii::$app->getUrlManager()->createUrl($returnUrl);
+            } else {
+                $returnUrl = null;
+            }
+        }
+        return $returnUrl === null ? Yii::$app->getHomeUrl() : $returnUrl;
     }
 }

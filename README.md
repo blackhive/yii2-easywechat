@@ -82,6 +82,12 @@ Yii::$app->wechat->openid = 'jfdjdjfjdaj';
 
 // 从 session 中获取 openid
 Yii::$app->wechat->openid;
+
+// 微信网页授权:
+if (Yii::$app->wechat->inWechat && !Yii::$app->wechat->openid) {
+    Yii::$app->wechat->returnUrl = ['user/order', 'id' => 1];
+    return Yii::$app->wechat->officialAccount->oauth->redirect()->send();
+}
 ```
 
 具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/docs/master)
