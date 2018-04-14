@@ -49,6 +49,10 @@ composer require --prefer-dist blackhive/yii2-easywechat -vvv
         'mp' => [
             'app_id' => '',
             'secret' => '',
+            'oauth' => [
+                'scopes'   => ['snsapi_base'],
+                'callback' => '/wechat/oauth-callback',
+            ],
         ],
         // 微信开放平台
         'open' => [
@@ -88,6 +92,12 @@ if (Yii::$app->wechat->inWechat && !Yii::$app->wechat->openid) {
     Yii::$app->wechat->returnUrl = ['user/order', 'id' => 1];
     return Yii::$app->wechat->officialAccount->oauth->redirect()->send();
 }
+
+// 网页授权回调控制器 /wechat/oauth-callback
+$oauth  = Yii::$app->wechat->officialAccount->oauth;
+Yii::$app->wechat->openid = $oauth->user()->getId();
+return $this->redirect(Yii::$app->wechat->returnUrl);
+
 ```
 
 具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/docs/master)
