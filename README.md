@@ -100,4 +100,4 @@ return $this->redirect(Yii::$app->wechat->returnUrl);
 
 ```
 
-具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/docs/master)
+具体使用请参考 [EasyWeChat文档](https://www.easywechat.com/4.x/overview.html)
